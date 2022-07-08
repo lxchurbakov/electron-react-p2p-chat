@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import Messages from './messages';
+
 const node = document.getElementById('app') as any;
 
 document.body.style.overflow = 'hidden';
@@ -14,6 +16,4 @@ node.style.justifyContent = 'center';
 
 const root = ReactDOM.createRoot(node);
 
-root.render(
-  <h1>It works!</h1>
-);
+root.render(<Messages />);

@@ -2,3 +2,4 @@
 
 - fe:build & fe:dev
 - tsconfig paths updates
+- tsc build

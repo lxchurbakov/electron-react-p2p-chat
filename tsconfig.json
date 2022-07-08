@@ -11,10 +11,9 @@
     "baseUrl": ".",
     "paths": {
       "/libs/*": ["./libs/*"],
-      "/platforms/*": ["./platforms/*"],
-      "/plugins/*": ["./plugins/*"],
       "/components/*": ["./components/*"],
-      "/types/*": ["./types/*"]
+      "/app/*": ["./app/*"],
+      "/types/*": ["./types/*"],
     }
   }
 }
