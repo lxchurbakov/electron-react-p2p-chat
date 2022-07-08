@@ -33,13 +33,14 @@ export type Props = {
   placeholder?: string;
   onFocus?: () => void;
   onBlur?: () => void;
+  onKeyDown?: (e: any) => void;
   style?: React.CSSProperties,
 };
 
-export default ({ value, onChange, placeholder, onFocus, onBlur, ...props }: Props) => {
+export default ({ value, onChange, placeholder, onFocus, onBlur, onKeyDown, ...props }: Props) => {
   return (
     <Wrap {...props}>
-      <Input placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value || '')} onFocus={onFocus} onBlur={onBlur} />
+      <Input placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value || '')} onFocus={onFocus} onBlur={onBlur} onKeyDown={onKeyDown} />
     </Wrap>
   );
 };
