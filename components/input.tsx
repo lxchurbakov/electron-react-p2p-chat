@@ -33,9 +33,10 @@ export type Props = {
   placeholder?: string;
   onFocus?: () => void;
   onBlur?: () => void;
+  style?: React.CSSProperties,
 };
 
-export default ({ value, onChange, placeholder, onFocus, onBlur, ...props }: Props & Partial<PropsOf<typeof Wrap>>) => {
+export default ({ value, onChange, placeholder, onFocus, onBlur, ...props }: Props) => {
   return (
     <Wrap {...props}>
       <Input placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value || '')} onFocus={onFocus} onBlur={onBlur} />

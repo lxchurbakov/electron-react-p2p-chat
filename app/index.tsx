@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
+import Authenticate from './authenticate';
 import Messages from './messages';
 
 const node = document.getElementById('app') as any;
@@ -16,4 +17,8 @@ node.style.justifyContent = 'center';
 
 const root = ReactDOM.createRoot(node);
 
-root.render(<Messages />);
+root.render(
+  <Authenticate>
+    <Messages />
+  </Authenticate>
+);
