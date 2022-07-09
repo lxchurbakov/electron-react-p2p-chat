@@ -7,20 +7,24 @@ import Button from '/components/button';
 
 import { Subheading, Label, Text } from '/components/text';
 
-import p2pnode from './p2pnode';
-import useName from './useName';
+import p2pnode from '/libs/p2pnode';
+import useName from '/libs/useName';
 
 export default () => {
   const [name] = useName();
+
   const [heading, setHeading] = React.useState('p2pchat');
-  const [messages, setMessages] = React.useState([
-    { message: { type: 'system', meta: (
-      <>
-        Use <a onClick={() => setMessage('/connect 127.0.0.1:8090')}>/connect 127.0.0.1:8090</a> command to connect to other nodes.
-      </>
-    )}}
-  ] as any[]);
   const [message, setMessage] = React.useState('');
+  const [messages, setMessages] = React.useState([{
+    message: {
+      type: 'system',
+      meta: (
+        <>
+          Use <a onClick={() => setMessage('/connect 127.0.0.1:8090')}>/connect 127.0.0.1:8090</a> command to connect to other nodes.
+        </>
+      )
+    },
+  }] as any[]);
 
   const containerRef = React.useRef<any>();
 
@@ -33,12 +37,10 @@ export default () => {
 
         scrollingElement.scrollTop = scrollingElement.scrollHeight;
       }, 100);
-
-      // ?.scrollTo({ top: containerRef.current.getBoundingClientRect().height });
     });
   }, [setMessages]);
 
-  const send = () => {
+  const send = React.useCallback(() => {
     if (message.startsWith('/connect')) {
       const [,address] = message.split(' ');
       const [ip, port] = address.split(':');
@@ -48,10 +50,16 @@ export default () => {
         p2pnode.send({ type: 'connect', meta: name });
       });
     } else {
-      p2pnode.send({ type: 'simple', meta: {name,message} });
+      p2pnode.send({ type: 'simple', meta: { name,message } });
       setMessage('');
     }
-  };
+  }, [message, setMessage]);
+
+  const handleKeyDown = React.useCallback((e: any) => {
+    if (e.code === 'Enter') {
+      send();
+    }
+  }, [send]);
 
   return (
     <Flex direction="column" style={{ height: '100%', padding: 12 }}>
@@ -91,7 +99,7 @@ export default () => {
       </div>
 
       <Flex gap={12}>
-        <Input placeholder="Your message" value={message} onChange={setMessage} onKeyDown={(e: any) => {if (e.code === 'Enter') send()}}/>
+        <Input placeholder="Your message" value={message} onChange={setMessage} onKeyDown={handleKeyDown}/>
         <Button onClick={send}>Send</Button>
       </Flex>
     </Flex>

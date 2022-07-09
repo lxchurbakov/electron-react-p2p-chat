@@ -12,7 +12,7 @@
     "paths": {
       "/libs/*": ["./libs/*"],
       "/components/*": ["./components/*"],
-      "/app/*": ["./app/*"],
+      "/web/*": ["./web/*"],
       "/types/*": ["./types/*"],
     }
   }

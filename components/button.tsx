@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export default styled.button`
+export default styled.button<{ disabled?: boolean }>`
   padding: 12px 24px;
 
   border-radius: 8px;
@@ -11,9 +11,6 @@ export default styled.button`
   position: relative;
   top: 0;
 
-  // background: none;
-  // border: 1px solid #6c6dff;
-  // color: #6c6dff;
   background: #6c6dff;
   border: none;
   color: white;
@@ -21,4 +18,9 @@ export default styled.button`
   &:active {
     top: 1px;
   }
+
+  ${props => props.disabled && css`
+    opacity: .5;
+    pointer-events: none;
+  `};
 `;

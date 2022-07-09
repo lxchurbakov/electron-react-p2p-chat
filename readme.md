@@ -1,19 +1,3 @@
-## TODO
+# Electron React P2P Chat
 
-- not want to remove main:index.js every parcel build
-- refactor to look better
-
-## Things to update in electron starter
-
-- fe:build & fe:dev
-- tsconfig paths updates
-- tsc build
-
-## Things to update in minimal ui
-
-- theme colors
-- onKeyDown for input + fixes of types
-
-## Things to update in swenssonp2p
-
-- make connect use nodeback with error
+This is a simple p2p chat application that uses [swenssonp2p](https://github.com/swensson/swenssonp2p) library and electron+parcel+react+[minimal ui](https://github.com/swensson/buecherei/tree/master/demos/minimal-ui-showcase).

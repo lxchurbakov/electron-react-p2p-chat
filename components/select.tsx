@@ -4,8 +4,6 @@ import styled, { css } from 'styled-components';
 import { Text } from '/components/text';
 import Input from '/components/input';
 
-import { PropsOf } from '/libs/utils';
-
 const LIGHT_BLUE = '#e2edf9';
 
 const Wrap = styled.div`

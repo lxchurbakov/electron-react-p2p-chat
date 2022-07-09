@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { PropsOf } from '/libs/utils';
-
 const PRIMARY_COLOR = '#6c6dff';
 
 const Wrap = styled.div`

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import Authenticate from './authenticate';
-import Messages from './messages';
+import Authenticate from './pages/authenticate';
+import Messages from './pages/messages';
 
 const node = document.getElementById('app') as any;
 

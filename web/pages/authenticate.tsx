@@ -5,19 +5,22 @@ import Input from '/components/input';
 import Button from '/components/button';
 import { Subheading, Text } from '/components/text';
 
-import p2pnode from './p2pnode';
-import useName from './useName';
-
-console.log('TODO add setLoading');
+import p2pnode from '/libs/p2pnode';
+import useName from '/libs/useName';
 
 export default ({ children }: { children: React.ReactElement }) => {
   const [name, setName] = useName();
   const [port, setPort] = React.useState('');
-  const [step, setStep] = React.useState('idle' as 'idle' | 'connected');
+  const [step, setStep] = React.useState('idle' as 'idle' | 'connecting' | 'connected');
 
   const connect = React.useCallback(() => {
-    p2pnode.listen({port}).then(() => {
+    setStep('connecting');
+
+    p2pnode.listen({ port }).then(() => {
       setStep('connected');
+    }).catch((err) => {
+      setStep('idle');
+      // TODO notification
     });
   }, [port, setStep]);
 
@@ -35,7 +38,7 @@ export default ({ children }: { children: React.ReactElement }) => {
       <Text style={{ marginBottom: 4 }}>Port to run local node at:</Text>
       <Input style={{ marginBottom: 24 }} placeholder="8094" value={port} onChange={setPort} />
 
-      <Button onClick={connect}>Start</Button>
+      <Button disabled={step === 'connecting'} onClick={connect}>Start</Button>
     </Card>
   );
 };
